@@ -3,12 +3,16 @@
     public enum PodcastCommand
     {
         Launch,
-        Play
+        Play,
+        Pause,
+        SkipNext,
+        SkipPrevious
     }
 
     public enum PlayMode
     {
         None,
-        Recent
+        Recent,
+        Random
     }
 }
