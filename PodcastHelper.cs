@@ -11,15 +11,17 @@ namespace PodcastWP
         /// Launches a podcast app w/ a specified command
         /// </summary>
         /// <param name="command">The command.</param>
-        /// <param name="mode">The mode of playback</param>
+        /// <param name="playMode">The mode of playback</param>
+        /// <param name="uiMode">The mode of the UI</param>
         /// <param name="callbackUri">The callback URI for your app if you want to be called back after the podcast app finishes its command.</param>
-        public static async void CommandPodcastApp(PodcastCommand command, PlayMode mode = PlayMode.None, string callbackUri = "")
+        public static async void CommandPodcastApp(PodcastCommand command, PlayMode playMode = PlayMode.None, UiMode uiMode = UiMode.Standard, string callbackUri = "")
         {
             var url = string.Format("{0}{1}/", PodcastScheme, command.ToString());
 
-            var queryString = ((mode != PlayMode.None) ? string.Format("mode={0}", mode) : string.Empty);
+            var queryString = ((playMode != PlayMode.None) ? string.Format("playMode={0}", playMode) : string.Empty);
             if (!string.IsNullOrEmpty(queryString))
                 queryString += "&";
+            queryString += ((uiMode != UiMode.Standard) ? string.Format("uiMode={0}", uiMode) : string.Empty);
             queryString += (!string.IsNullOrEmpty(callbackUri) ? string.Format("callbackuri={0}", callbackUri) : string.Empty);
 
             url += (!string.IsNullOrEmpty(queryString) ? string.Format("?{0}", queryString) : string.Empty);
