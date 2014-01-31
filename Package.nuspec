@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PodcastWP</id>
+    <version>1.0</version>
+    <authors>Rob Irving</authors>
+    <owners>Rob Irving</owners>
+    <iconUrl>https://raw.github.com/robwirving/PodcastWP/master/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Helper class to launch or consume wp-podcast:// uri scheme</description>
+    <tags>Podcast URI</tags>
+  </metadata>
+</package>
