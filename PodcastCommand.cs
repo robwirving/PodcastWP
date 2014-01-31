@@ -15,4 +15,10 @@
         Recent,
         Random
     }
+
+    public enum UiMode
+    {
+        Standard,
+        Car
+    }
 }

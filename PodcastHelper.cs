@@ -1,14 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using PodcastWP.Extensions;
 
 namespace PodcastWP
@@ -63,13 +53,15 @@ namespace PodcastWP
 
             PodcastCommand command = (PodcastCommand)Enum.Parse(typeof(PodcastCommand), commandString, true);
 
-            var mode = queryString.ContainsKey("mode") ? (PlayMode)Enum.Parse(typeof(PlayMode), queryString["mode"], true) : PlayMode.None;
+            var playMode = queryString.ContainsKey("playMode") ? (PlayMode)Enum.Parse(typeof(PlayMode), queryString["playMode"], true) : PlayMode.None;
+            var uiMode = queryString.ContainsKey("uiMode") ? (UiMode)Enum.Parse(typeof(UiMode), queryString["uiMode"], true) : UiMode.Standard;
             var callbackUri = queryString.ContainsKey("callbackuri") ? queryString["callbackuri"] : string.Empty;
 
             PodcastAction action = new PodcastAction
             {
                 Command = command,
-                Mode = mode,
+                PlayMode = playMode,
+                UiMode = uiMode,
                 CallbackUri = callbackUri
             };
 
@@ -77,4 +69,3 @@ namespace PodcastWP
         }
     }
 }
-
