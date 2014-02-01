@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using PodcastWP.Extensions;
 
 namespace PodcastWP
@@ -18,11 +20,15 @@ namespace PodcastWP
         {
             var url = string.Format("{0}{1}/", PodcastScheme, command.ToString());
 
-            var queryString = ((playMode != PlayMode.None) ? string.Format("playMode={0}", playMode) : string.Empty);
-            if (!string.IsNullOrEmpty(queryString))
-                queryString += "&";
-            queryString += ((uiMode != UiMode.Standard) ? string.Format("uiMode={0}", uiMode) : string.Empty);
-            queryString += (!string.IsNullOrEmpty(callbackUri) ? string.Format("callbackuri={0}", callbackUri) : string.Empty);
+            var queryParams = new List<string>();
+            if (playMode != PlayMode.None)
+                queryParams.Add(string.Format("playMode={0}", playMode));
+            if (uiMode != UiMode.Standard)
+                queryParams.Add(string.Format("uiMode={0}", uiMode));
+            if (!string.IsNullOrEmpty(callbackUri))
+                queryParams.Add(string.Format("callbackUri={0}", callbackUri));
+
+            var queryString = string.Join("&", queryParams);
 
             url += (!string.IsNullOrEmpty(queryString) ? string.Format("?{0}", queryString) : string.Empty);
 
