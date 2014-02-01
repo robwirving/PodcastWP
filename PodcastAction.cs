@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PodcastWP
+﻿namespace PodcastWP
 {
     public class PodcastAction
     {
@@ -22,7 +16,15 @@ namespace PodcastWP
         /// <value>
         /// The mode of play.
         /// </value>
-        public PlayMode Mode { get; set; }
+        public PlayMode PlayMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the UI mode that was requested from the calling app
+        /// </summary>
+        /// <value>
+        /// The mode of the UI.
+        /// </value>
+        public UiMode UiMode { get; set; }
 
         /// <summary>
         /// Gets or sets the callback URI for your app if you want to be called back after adding.
