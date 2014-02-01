@@ -3,6 +3,13 @@ PodcastWP
 
 A helper class for Windows Phone 8 podcast apps, and apps that want to send commands to WP8 podcast apps.
 
+## Installation ##
+PodcastWP can be installed from NuGet:
+
+```
+Install-Package PodcastWP
+```
+
 ## Send Commands to Podcast Apps ##
 The PodcastHelper class can send commands to Launch, Play, Pause or skip to the next or previous podcast app using this method:
 
