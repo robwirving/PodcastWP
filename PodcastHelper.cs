@@ -27,19 +27,13 @@ namespace PodcastWP
 
             var queryParams = new List<string>();
             if (playMode != PlayMode.None)
-            {
                 queryParams.Add(string.Format("{1}={0}", playMode, PlayModeArgument));
-            }
             if (uiMode != UiMode.Standard)
                 queryParams.Add(string.Format("{1}={0}", uiMode, UiModeArgument));
             if (!string.IsNullOrEmpty(callbackUri))
-            {
                 queryParams.Add(string.Format("{1}={0}", callbackUri, CallbackUriArgument));
-            }
             if (!string.IsNullOrEmpty(callbackUri))
-            {
                 queryParams.Add(string.Format("{1}={0}", callbackName, CallbackNameArgument));
-            }
 
             var queryString = string.Join("&", queryParams);
 
