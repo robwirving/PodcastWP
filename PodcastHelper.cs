@@ -16,7 +16,8 @@ namespace PodcastWP
         /// <param name="playMode">The mode of playback</param>
         /// <param name="uiMode">The mode of the UI</param>
         /// <param name="callbackUri">The callback URI for your app if you want to be called back after the podcast app finishes its command.</param>
-        public static async void CommandPodcastApp(PodcastCommand command, PlayMode playMode = PlayMode.None, UiMode uiMode = UiMode.Standard, string callbackUri = "")
+        /// <param name="callbackName">The name of your app which could be displayed in the target podcast app</param>
+        public static async void CommandPodcastApp(PodcastCommand command, PlayMode playMode = PlayMode.None, UiMode uiMode = UiMode.Standard, string callbackUri = "", string callbackName = "")
         {
             var url = string.Format("{0}{1}/", PodcastScheme, command.ToString());
 
@@ -27,6 +28,8 @@ namespace PodcastWP
                 queryParams.Add(string.Format("uiMode={0}", uiMode));
             if (!string.IsNullOrEmpty(callbackUri))
                 queryParams.Add(string.Format("callbackUri={0}", callbackUri));
+            if (!string.IsNullOrEmpty(callbackUri))
+                queryParams.Add(string.Format("callbackName={0}", callbackName));
 
             var queryString = string.Join("&", queryParams);
 
@@ -63,14 +66,16 @@ namespace PodcastWP
 
             var playMode = queryString.ContainsKey("playMode") ? (PlayMode)Enum.Parse(typeof(PlayMode), queryString["playMode"], true) : PlayMode.None;
             var uiMode = queryString.ContainsKey("uiMode") ? (UiMode)Enum.Parse(typeof(UiMode), queryString["uiMode"], true) : UiMode.Standard;
-            var callbackUri = queryString.ContainsKey("callbackuri") ? queryString["callbackuri"] : string.Empty;
+            var callbackUri = queryString.ContainsKey("callbackUri") ? queryString["callbackUri"] : string.Empty;
+            var callbackName = queryString.ContainsKey("callbackuri") ? queryString["callbackName"] : string.Empty;
 
             PodcastAction action = new PodcastAction
             {
                 Command = command,
                 PlayMode = playMode,
                 UiMode = uiMode,
-                CallbackUri = callbackUri
+                CallbackUri = callbackUri,
+                CallbackName = callbackName
             };
 
             return action;

@@ -33,5 +33,13 @@
         /// The callback URI.
         /// </value>
         public string CallbackUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the callback name of your app
+        /// </summary>
+        /// <value>
+        /// The callback apps name
+        /// </value>
+        public string CallbackName { get; set; }
     }
 }
