@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using PodcastWP.Extensions;
 
@@ -8,6 +7,11 @@ namespace PodcastWP
     public static class PodcastHelper
     {
         private const string PodcastScheme = "wp-podcast://";
+
+        private const string PlayModeArgument = "playMode";
+        private const string UiModeArgument = "uiMode";
+        private const string CallbackUriArgument = "callbackUri";
+        private const string CallbackNameArgument = "callbackName";
 
         /// <summary>
         /// Launches a podcast app w/ a specified command
@@ -23,13 +27,13 @@ namespace PodcastWP
 
             var queryParams = new List<string>();
             if (playMode != PlayMode.None)
-                queryParams.Add(string.Format("playMode={0}", playMode));
+                queryParams.Add(string.Format("{1}={0}", playMode, PlayModeArgument));
             if (uiMode != UiMode.Standard)
-                queryParams.Add(string.Format("uiMode={0}", uiMode));
+                queryParams.Add(string.Format("{1}={0}", uiMode, UiModeArgument));
             if (!string.IsNullOrEmpty(callbackUri))
-                queryParams.Add(string.Format("callbackUri={0}", callbackUri));
+                queryParams.Add(string.Format("{1}={0}", callbackUri, CallbackUriArgument));
             if (!string.IsNullOrEmpty(callbackUri))
-                queryParams.Add(string.Format("callbackName={0}", callbackName));
+                queryParams.Add(string.Format("{1}={0}", callbackName, CallbackNameArgument));
 
             var queryString = string.Join("&", queryParams);
 
@@ -64,10 +68,10 @@ namespace PodcastWP
 
             PodcastCommand command = (PodcastCommand)Enum.Parse(typeof(PodcastCommand), commandString, true);
 
-            var playMode = queryString.ContainsKey("playMode") ? (PlayMode)Enum.Parse(typeof(PlayMode), queryString["playMode"], true) : PlayMode.None;
-            var uiMode = queryString.ContainsKey("uiMode") ? (UiMode)Enum.Parse(typeof(UiMode), queryString["uiMode"], true) : UiMode.Standard;
-            var callbackUri = queryString.ContainsKey("callbackUri") ? queryString["callbackUri"] : string.Empty;
-            var callbackName = queryString.ContainsKey("callbackuri") ? queryString["callbackName"] : string.Empty;
+            var playMode = queryString.ContainsKey(PlayModeArgument) ? (PlayMode)Enum.Parse(typeof(PlayMode), queryString[PlayModeArgument], true) : PlayMode.None;
+            var uiMode = queryString.ContainsKey(UiModeArgument) ? (UiMode)Enum.Parse(typeof(UiMode), queryString[UiModeArgument], true) : UiMode.Standard;
+            var callbackUri = queryString.ContainsKey(CallbackUriArgument) ? queryString[CallbackUriArgument] : string.Empty;
+            var callbackName = queryString.ContainsKey(CallbackNameArgument) ? queryString[CallbackNameArgument] : string.Empty;
 
             PodcastAction action = new PodcastAction
             {
