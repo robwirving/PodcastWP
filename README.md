@@ -42,5 +42,5 @@ if (PodcastHelper.HasPodcastUri(uri))
 
 [![BringCast](http://cdn.marketplaceimages.windowsphone.com/v8/images/ab0bf9d4-a999-46dd-b0ad-f68ea2f94407?imageType=ws_icon_tiny)](http://www.windowsphone.com/s?appid=e5abef38-d413-e011-9264-00237de2db9e) | [![Car Dash](http://cdn.marketplaceimages.windowsphone.com/v8/images/cae4e4ab-9c6b-4c79-853a-b826f61e8c89?imageType=ws_icon_tiny)](http://www.windowsphone.com/s?appid=5c8c34e1-34c4-4e3e-87b5-bbb7d4a8c652) | [![P | Cast](http://cdn.marketplaceimages.windowsphone.com/v8/images/54d503f3-4444-4522-a199-e54268995037?imageType=ws_icon_tiny)](http://www.windowsphone.com/s?appid=4ddd2958-3a58-491f-963e-3a19dd205b1c) |
 |---|---|---|
-| [BringCast](http://www.windowsphone.com/s?appid=e5abef38-d413-e011-9264-00237de2db9e) | [Car Dash](http://www.windowsphone.com/s?appid=5c8c34e1-34c4-4e3e-87b5-bbb7d4a8c652) | [P | Cast](http://www.windowsphone.com/s?appid=4ddd2958-3a58-491f-963e-3a19dd205b1c) |
+| [BringCast](http://www.windowsphone.com/s?appid=e5abef38-d413-e011-9264-00237de2db9e) | [Car Dash](http://www.windowsphone.com/s?appid=5c8c34e1-34c4-4e3e-87b5-bbb7d4a8c652) | [P | Cast](http://www.windowsphone.com/s?appid=4ddd2958-3a58-491f-963e-3a19dd205b1c)
 
