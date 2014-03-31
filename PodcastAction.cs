@@ -27,6 +27,14 @@
         public UiMode UiMode { get; set; }
 
         /// <summary>
+        /// Gets or sets the url of the podcast feed you want the podcast app to subscribe to
+        /// </summary>
+        /// <value>
+        /// The URl of the podcast feed
+        /// </value>
+        public string FeedUrl { get; set; }
+
+        /// <summary>
         /// Gets or sets the callback URI for your app if you want to be called back after adding.
         /// </summary>
         /// <value>

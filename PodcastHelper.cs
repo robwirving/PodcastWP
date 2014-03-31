@@ -12,6 +12,7 @@ namespace PodcastWP
         private const string UiModeArgument = "uiMode";
         private const string CallbackUriArgument = "callbackUri";
         private const string CallbackNameArgument = "callbackName";
+        private const string FeedUrlArgument = "feedUrl";
 
         /// <summary>
         /// Launches a podcast app w/ a specified command
@@ -23,7 +24,7 @@ namespace PodcastWP
         /// <param name="callbackName">The name of your app which could be displayed in the target podcast app</param>
         public static async void CommandPodcastApp(PodcastCommand command, PlayMode playMode = PlayMode.None, UiMode uiMode = UiMode.Standard, string callbackUri = "", string callbackName = "")
         {
-            var url = string.Format("{0}{1}/", PodcastScheme, command.ToString());
+            var uri = string.Format("{0}{1}/", PodcastScheme, command.ToString());
 
             var queryParams = new List<string>();
             if (playMode != PlayMode.None)
@@ -37,9 +38,34 @@ namespace PodcastWP
 
             var queryString = string.Join("&", queryParams);
 
-            url += (!string.IsNullOrEmpty(queryString) ? string.Format("?{0}", queryString) : string.Empty);
+            uri += (!string.IsNullOrEmpty(queryString) ? string.Format("?{0}", queryString) : string.Empty);
 
-            await Windows.System.Launcher.LaunchUriAsync(new Uri(url));
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(uri));
+        }
+
+        /// <summary>
+        /// Launches a podcast app w/ a request to subscribe to a specified podcast
+        /// </summary>
+        /// <param name="feedUrl">Url for the podcast feed</param>
+        /// <param name="callbackUri">The callback URI for your app if you want to be called back after the podcast app finishes its command.</param>
+        /// <param name="callbackName">The name of your app which could be displayed in the target podcast app</param>
+        public static async void SubscribeToPodcast(string feedUrl, string callbackUri = "", string callbackName = "")
+        {
+            var uri = string.Format("{0}{1}/", PodcastScheme, PodcastCommand.Subscribe.ToString());
+
+            var queryParams = new List<string>();
+            if (!string.IsNullOrEmpty(feedUrl))
+                queryParams.Add(string.Format("{1}={0}", feedUrl, FeedUrlArgument));
+            if (!string.IsNullOrEmpty(callbackUri))
+                queryParams.Add(string.Format("{1}={0}", callbackUri, CallbackUriArgument));
+            if (!string.IsNullOrEmpty(callbackName))
+                queryParams.Add(string.Format("{1}={0}", callbackName, CallbackNameArgument));
+
+            var queryString = string.Join("&", queryParams);
+
+            uri += (!string.IsNullOrEmpty(queryString) ? string.Format("?{0}", queryString) : string.Empty);
+
+            await Windows.System.Launcher.LaunchUriAsync(new Uri(uri));
         }
 
         /// <summary>
@@ -72,12 +98,14 @@ namespace PodcastWP
             var uiMode = queryString.ContainsKey(UiModeArgument) ? (UiMode)Enum.Parse(typeof(UiMode), queryString[UiModeArgument], true) : UiMode.Standard;
             var callbackUri = queryString.ContainsKey(CallbackUriArgument) ? queryString[CallbackUriArgument] : string.Empty;
             var callbackName = queryString.ContainsKey(CallbackNameArgument) ? queryString[CallbackNameArgument] : string.Empty;
+            var feedUrl = queryString.ContainsKey(FeedUrlArgument) ? queryString[FeedUrlArgument] : string.Empty;
 
             PodcastAction action = new PodcastAction
             {
                 Command = command,
                 PlayMode = playMode,
                 UiMode = uiMode,
+                FeedUrl = feedUrl,
                 CallbackUri = callbackUri,
                 CallbackName = callbackName
             };

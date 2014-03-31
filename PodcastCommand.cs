@@ -6,7 +6,8 @@
         Play,
         Pause,
         SkipNext,
-        SkipPrevious
+        SkipPrevious,
+        Subscribe
     }
 
     public enum PlayMode
