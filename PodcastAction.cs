@@ -32,7 +32,7 @@
         /// <value>
         /// The URl of the podcast feed
         /// </value>
-        public string FeedUrl { get; set; }
+        public System.Uri FeedUrl { get; set; }
 
         /// <summary>
         /// Gets or sets the callback URI for your app if you want to be called back after adding.
