@@ -17,6 +17,16 @@ The PodcastHelper class can send commands to Launch, Play, Pause or skip to the 
 PodcastHelper.CommandPodcastApp(PodcastCommand.Launch);
 ```
 
+## Subscribe to a Podcast ##
+The PodcastHelper clas can also send commands to subscribe to a Podcast rss feed:
+```c#
+PodcastHelper.SubscribeToPodcast(new Uri("<rss feed url>"));
+```
+If you want to subscribe to a podcast without the PodcastHelper library you can also use the URI directly:
+```c#
+Launcher.LaunchUriAsync(new Uri("wp-podcast://Subscribe/?feedUrl=<rss feed url>"));
+```
+
 ## Use in Podcast Apps ##
 The PodcastHelper will allow you to easily check a URL for the presence of a PodcastWP command.
 
