@@ -55,7 +55,7 @@ namespace PodcastWP
 
             var queryParams = new List<string>();
             
-            queryParams.Add(string.Format("{1}={0}", feedUrl.OriginalString, FeedUrlArgument));
+            queryParams.Add(string.Format("{1}={0}", Uri.EscapeDataString(feedUrl.OriginalString), FeedUrlArgument));
             if (!string.IsNullOrEmpty(callbackUri))
                 queryParams.Add(string.Format("{1}={0}", callbackUri, CallbackUriArgument));
             if (!string.IsNullOrEmpty(callbackName))
@@ -109,7 +109,7 @@ namespace PodcastWP
             var uiMode = queryString.ContainsKey(UiModeArgument) ? (UiMode)Enum.Parse(typeof(UiMode), queryString[UiModeArgument], true) : UiMode.Standard;
             var callbackUri = queryString.ContainsKey(CallbackUriArgument) ? queryString[CallbackUriArgument] : string.Empty;
             var callbackName = queryString.ContainsKey(CallbackNameArgument) ? queryString[CallbackNameArgument] : string.Empty;
-            var feedUrl = queryString.ContainsKey(FeedUrlArgument) ? new Uri(queryString[FeedUrlArgument], UriKind.RelativeOrAbsolute) : null;
+            var feedUrl = queryString.ContainsKey(FeedUrlArgument) ? new Uri(Uri.UnescapeDataString(queryString[FeedUrlArgument]), UriKind.RelativeOrAbsolute) : null;
 
             PodcastAction action = new PodcastAction
             {
